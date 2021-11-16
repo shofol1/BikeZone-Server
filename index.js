@@ -32,6 +32,12 @@ async function run() {
       const result = await cursor.limit(10).toArray();
       res.send(result);
     });
+    app.post("/products", async (req, res) => {
+      const review = req.body;
+      const result = await productsCollection.insertOne(review);
+      console.log(result);
+      res.json(result);
+    });
     //all products
     app.get("/allproducts", async (req, res) => {
       const cursor = productsCollection.find({});
@@ -107,7 +113,7 @@ async function run() {
       res.send(result);
     });
     //delete mybooking
-    app.delete("/Orders/:id", async (req, res) => {
+    app.delete("/orders/:id", async (req, res) => {
       const id = req.params.id;
       console.log(id);
       const query = { _id: ObjectId(id) };
