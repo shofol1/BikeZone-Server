@@ -29,7 +29,7 @@ async function run() {
     //load or get all data from database
     app.get("/products", async (req, res) => {
       const cursor = productsCollection.find({});
-      const result = await cursor.limit(10).toArray();
+      const result = await cursor.limit(6).toArray();
       res.send(result);
     });
     app.post("/products", async (req, res) => {
@@ -41,7 +41,7 @@ async function run() {
     //all products
     app.get("/allproducts", async (req, res) => {
       const cursor = productsCollection.find({});
-      const result = await cursor.toArray();
+      const result = await cursor.limit(10).toArray();
       res.send(result);
     });
     app.post("/users", async (req, res) => {
